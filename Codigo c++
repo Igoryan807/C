@@ -1,0 +1,215 @@
+CallBack::ShowStats(playerid,targetid)
+{
+    if(IsPlayerConnected(playerid)&&IsPlayerConnected(targetid))
+    {
+        new cash =  GetPlayerMoneyEx(targetid);
+        new atext[20];
+        if(PlayerDados[targetid][pSex] == 1)
+		{
+		    atext = "Masculino";
+		}
+        else if(PlayerDados[targetid][pSex] == 2)
+		{
+		    atext = "Feminino";
+		}
+        new dtext[20];
+        if(PlayerDados[targetid][pDoenca] == 1)
+		{
+		    dtext = "Mongolismo";
+		}
+        else if(PlayerDados[targetid][pDoenca] == 2)
+		{
+		    dtext = "AIDS";
+		}
+        else if(PlayerDados[targetid][pDoenca] == 3)
+		{
+		    dtext = "Herpes Genital";
+		}
+        else if(PlayerDados[targetid][pDoenca] == 4)
+		{
+		    dtext = "Cirrose";
+		}
+        else if(PlayerDados[targetid][pDoenca] == 5)
+		{
+		    dtext = "Câncer de Pulmão";
+		}
+        else
+		{
+		    dtext = "Nenhuma";
+		}
+        new jtext[1500];
+        if(PlayerDados[targetid][pEmprego] == 1)
+		{
+		    jtext = "Prostituta";
+		}
+        else if(PlayerDados[targetid][pEmprego] == 2)
+		{
+		    jtext = "Advogado";
+		}
+        else if(PlayerDados[targetid][pEmprego] == 3)
+		{
+		    jtext = "Segurança";
+		}
+        else if(PlayerDados[targetid][pEmprego] == 4)
+		{
+		    jtext = "Motorista de Onibus";
+		}
+        else if(PlayerDados[targetid][pEmprego] == 5)
+		{
+		    jtext = "Mendigo";
+		}
+        else if(PlayerDados[targetid][pEmprego] == 6)
+		{
+		    jtext = "Caminhoneiro";
+		}
+		else if(PlayerDados[targetid][pEmprego] == 7)
+		{
+		    jtext = "Lixeiro";
+		}
+		else if(PlayerDados[targetid][pEmprego] == 8)
+		{
+		    jtext = "Carteiro";
+		}
+		else if(PlayerDados[targetid][pEmprego] == 9)
+		{
+		    jtext = "Entregador De Pizza";
+		}
+		else if(PlayerDados[targetid][pEmprego] == 10)
+		{
+		    jtext = "Ladrão de Carro";
+		}
+		else if(PlayerDados[targetid][pEmprego] == 11)
+		{
+		    jtext = "Taxista";
+		}
+		else if(PlayerDados[targetid][pEmprego] == 12)
+		{
+		    jtext = "Entregador";
+		}
+  		else if(PlayerDados[targetid][pEmprego] == 13)
+		{
+		    jtext = "Piloto de Avião";
+		}
+  		else if(PlayerDados[targetid][pEmprego] == 14)
+		{
+		    jtext = "Fazendeiro";
+		}
+    	else if(PlayerDados[targetid][pEmprego] == 15)
+		{
+		    jtext = "Mecânico";
+		}
+
+		else if(PlayerDados[targetid][pEmprego] == 17)
+		{
+		    jtext = "Transportador de Valores";
+		}
+ 		else if(PlayerDados[targetid][pEmprego] == 18)
+		{
+		    jtext = "Carcereiro";
+		}
+		else if(PlayerDados[targetid][pEmprego] == 19)
+		{
+		    jtext = "Agente Funerario";
+		}
+        else
+		{
+		    jtext = "Nenhum";
+		}
+        new RankVip[34];
+        if(PlayerDados[targetid][pVip] == 0)
+		{
+		    RankVip = "Gratis";
+     	}
+        else if(PlayerDados[targetid][pVip] == 1)
+		{
+		    RankVip = "VIP";
+		}
+        else if(PlayerDados[targetid][pVip] == 2)
+		{
+		    RankVip = "Sócio bronze";
+		}
+        else if(PlayerDados[targetid][pVip] == 3)
+		{
+		    RankVip = "Sócio Prata";
+		}
+        else if(PlayerDados[targetid][pVip] == 4)
+		{
+		    RankVip = "Sócio Ouro";
+		}
+        else if(PlayerDados[targetid][pVip] == 5)
+		{
+		    RankVip = "Sócio Diamante";
+		}
+        new ChipRank[34];
+        if(PlayerDados[targetid][pChip] == 1)
+        {
+            ChipRank = "Claro";
+        }
+        else if(PlayerDados[targetid][pChip] == 2)
+        {
+            ChipRank = "Tim";
+        }
+        else if(PlayerDados[targetid][pChip] == 3)
+        {
+            ChipRank = "Vivo";
+        }
+        else if(PlayerDados[targetid][pChip] == 4)
+        {
+            ChipRank = "Oi";
+        }
+        new ptime = PlayerDados[targetid][pConnectTime];
+        new deaths = PlayerDados[targetid][pDeaths];
+        new crimes = PlayerDados[targetid][pCrimes];
+        new level = PlayerDados[targetid][pLevel];
+        new exp = PlayerDados[targetid][pExp];
+        new kills = PlayerDados[targetid][pKills];
+        new pnumber = PlayerDados[targetid][pPnumber];
+        new Conta = PlayerDados[targetid][pConta];
+        new nxtlevel = PlayerDados[targetid][pLevel]+1;
+        new expquantidade = nxtlevel*levelexp;
+        new costlevel = nxtlevel*levelcost;//10k for testing purposes
+        new creditos = PlayerDados[targetid][pLigando];
+        new name[MAX_PLAYER_NAME];
+        GetPlayerName(targetid, name, sizeof(name));
+        new Float:px,Float:py,Float:pz;
+        GetPlayerPos(targetid, px, py, pz);
+        new kstring[1500];
+        new tituloRG[120];
+		new textoRG[5000];
+        if(targetid == playerid)
+        {
+            format(tituloRG, sizeof(tituloRG),"Seu RG {00BB00}%s",name);
+        }
+        else
+        {
+            format(tituloRG, sizeof(tituloRG),"RG de {00BB00}%s", name);
+        }
+        format(kstring, sizeof(kstring), "{FFFFFF}Nivel: [{00BB00}%d{FFFFFF}] Dinheiro: [{00BB00}R$%d{FFFFFF}] Banco: [{00BB00}R$%d{FFFFFF}]\n", level, cash, Conta);
+		strcat(textoRG, kstring);
+		format(kstring, sizeof(kstring), "Sexo: [{00BB00}%s{FFFFFF}] Casado Com: [{00BB00}%s{FFFFFF}] Horas Jogadas: [{00BB00}%d{FFFFFF}]\n", atext,PlayerDados[targetid][pMarriedTo],ptime);
+        strcat(textoRG, kstring);
+		format(kstring, sizeof(kstring), "{FFFFFF}Crimes Cometidos: [{00BB00}%d{FFFFFF}] Matou: [{00BB00}%d{FFFFFF}] Morreu: [{00BB00}%d{FFFFFF}]\n", crimes,kills,deaths);
+        strcat(textoRG, kstring);
+
+		format(kstring, sizeof(kstring), "Profissão Secundaria: [{00BB00}%s{FFFFFF}] Organização: [{00BB00}%s{FFFFFF}]", jtext, NomeORG(targetid));
+
+		strcat(textoRG, kstring);
+		format(kstring, sizeof(kstring), "Cargo: [{00BB00}%s{FFFFFF}] Celular: [{00BB00}%d{FFFFFF}] Créditos: [{00BB00}%d{FFFFFF}] CHIP: [{00BB00}%s{FFFFFF}]\n", OrgCargo(targetid), pnumber, creditos, ChipRank);
+  		strcat(textoRG, kstring);
+
+		format(kstring, sizeof(kstring), "Casa: [{00BB00}%d{FFFFFF}] Veículo: [{00BB00}%d{FFFFFF}] Veículo 2: [{00BB00}%d{FFFFFF}] Veículo 3: [{00BB00}%d{FFFFFF}]\n", PlayerDados[targetid][pPHousekey], PlayerDados[targetid][pChave], PlayerDados[targetid][pChave2], PlayerDados[targetid][pChave3]);
+        strcat(textoRG, kstring);
+        new Float:health;
+        GetPlayerHealth(targetid,health);
+        format(kstring, sizeof(kstring), "{FFFFFF}Preço do Próximo Nivel: [{00BB00}R$%d{FFFFFF}] Respeito: [{00BB00}%d/%d{FFFFFF}] Vida: [{00BB00}%f/%d{FFFFFF}]",costlevel,exp,expquantidade,health,PlayerDados[targetid][pVida]);
+        strcat(textoRG, kstring);
+        if(PlayerDados[targetid][pVip] != 0)
+        {
+	        format(kstring, sizeof(kstring), "\nJogador %s do Servidor, o {00BB00}%s {FFFFFF}Expira na data: {00BB00}%d/%d/%d", RankVip,RankVip,PlayerDados[targetid][pDiaVIP],PlayerDados[targetid][pMesVIP],PlayerDados[targetid][pAnoVIP]);
+	        strcat(textoRG, kstring);
+        }
+
+        ShowPlayerDialog(playerid, 1917, DIALOG_STYLE_MSGBOX, tituloRG, textoRG, "Fechar", "");
+	}
+    return 1;
+}
